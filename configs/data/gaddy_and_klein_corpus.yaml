@@ -1,0 +1,6 @@
+dataset_root: "data/gaddy_complete"
+name: gaddy_voiced
+num_emg_sessions: 17
+num_emg_channels: 8
+requires_activation: "tanh"
+strict: false

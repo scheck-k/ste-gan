@@ -1,0 +1,6 @@
+type: "EMGEncoderTransformer"
+params: 
+  model_size: 768
+  num_extra_res_blocks: 3
+  dropout: 0.2
+  num_transformer_layers: 6

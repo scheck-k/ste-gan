@@ -1,0 +1,73 @@
+# Where models should be saved
+model_base_dir: exp/ste-gan
+
+# The main model
+model:
+  type: "EMGGeneratorGanTTS"
+  # The main speech features for speech to EMG
+  # Defaults to speech units -> 50Hz
+  # Alternative: MFCCs -> 100Hz
+  speech_feature_type: "SPEECH_UNITS"
+  discriminator_small: true
+
+train:  
+  random_seed: 0
+  debug: false
+
+  # LOSS WEIGHTS
+  loss_adversarial: "mse"
+
+  mixed_precision: true
+  
+  # EMG encoder losses (speech unit + phoneme loss)
+  # Speech Unit Loss
+  loss_speech_unit_error: true
+  loss_speech_unit_weight: 1.0 # 0.5
+  
+  # Phoneme classification
+  loss_phoneme_error: true
+  loss_phoneme_weight: 1.0 #0.5
+  
+  # Multi Time-Domain Loss
+  loss_multi_td_error: True
+  loss_multi_td_weight: 15.0
+  
+  # Feature matching
+  loss_feat_match_error: true
+  loss_feat_match_weight: 7.0
+
+  # MSE loss
+  loss_waveform_error: false
+  loss_waveform_weight: 0.0
+
+  # Optimization settings
+  batch_size: 32
+
+  # Number of EMG samples to output
+  chunk_size: 2048
+  
+  # max steps
+  # Use more steps if you do not any EMG encoder losses
+  max_steps: 25_000
+
+  # Logging & Eval settings
+  # Number of steps between logging
+  interval_log: 50
+
+  # Number of steps between generating samples
+  interval_sample: 1_000
+
+  # Number of steps between saving
+  interval_save: 10_000
+
+  # Number of steps between validation
+  interval_valid: 500
+
+  # Number of steps between logging waveform MSE
+  interval_waveform: 500
+
+  # Interval between plotting
+  interval_plot: 1_000
+
+  # Number of samples to put on tensorboard
+  num_test_samples: 10
