@@ -1,7 +1,9 @@
 # Raw data and pre-processed data
 raw_data/ 
-data/
+.data/
 exp/
+
+
 
 # Pre-trained models from speechbrain
 pretrained_models/
